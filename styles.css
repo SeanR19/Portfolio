@@ -276,7 +276,7 @@ body {
   
   .hero-title {
     font-size: 35px;
-    font-weight: 700;
+    font-weight: 600;
     font-family: 'Poppins', sans-serif;
     letter-spacing: -0.01em;
     margin: 0;
@@ -781,4 +781,130 @@ body {
   
   
 
+  /* mobile */
+
+  /* ============ MOBILE ONLY (phones) ============ */
+@media (max-width: 480px) {
+  /* Global 13px gutters */
+  .section { padding: 28px 13px; }
+
+  /* Common inner wrappers use the same 13px gutters */
+  .projects-section-content,
+  .careers-section-content,
+  .brands-wrapper,
+  .tech-stack-wrapper {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  /* -------- Bottom navbar: buttons only -------- */
+  .profile-image,
+  .status,   /* hides "Available for work" + pulsing dot */
+  .divider { /* hides the vertical bar */
+    display: none !important;
+  }
+
+  /* Pin navbar to 13px gutters and remove center transform */
+  .navbar-wrapper {
+    bottom: 40px;
+    left: 13px;
+    right: 13px;
+    transform: none;
+    display: flex;
+    justify-content: center;   /* <-- center the .navbar child */
+    gap: 0;
+  }
+
+  /* Let the pill size to its contents and center it */
+  .navbar {
+    width: auto;               /* <-- not 100% */
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 19px 60px;        /* make left/right symmetric */
+    border-radius: 18px;
   
+  }
+
+  /* Clean margins so they don't push the group off-center */
+  .hero-button,
+  .work-button {
+    margin: 0;
+    padding: 8px 30.5px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
+
+  /* -------- HERO -------- */
+  .hero { padding-top: 120px; text-align: left; }
+  .hero-container { gap: 20px; max-width: 100%; padding: 0 0; flex-direction: column; align-items: flex-start; }
+  .hero-logo { width: 76px; height: auto; }
+  .hero-content { max-width: 100%; }
+  .hero-title { font-size: 28px; margin-bottom: 6px; }
+  .hero-subtitle { font-size: 14px; line-height: 1.55; margin-bottom: 16px; }
+
+  /* -------- PROJECTS -------- */
+  .projects-section-content { max-width: 100%; }
+  .projects-row { flex-direction: column; gap: 8px; align-items: flex-start; margin-bottom: 22px; }
+  .projects-label { font-size: 14px; }
+  .projects-heading { font-size: 20px; line-height: 1.3; }
+
+  .projects-grid { gap: 16px; }
+  .project-card {
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    gap: 12px;
+    border-radius: 16px;
+  }
+  .project-preview {
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+  }
+  .project-preview img { width: 100%; height: 100%; object-fit: cover; }
+  .project-footer { padding: 0; }
+  .project-title { font-size: 16px; }
+  .project-arrow { width: 14px; height: 14px; }
+  .see-all-button { width: 100%; justify-content: center; }
+
+  /* -------- CAREERS -------- */
+  .careers-section-content { padding: 0 13px; }
+  .careers-row { flex-direction: column; gap: 8px; align-items: flex-start; margin-bottom: 20px; }
+  .careers-label { font-size: 14px; }
+  .careers-heading { font-size: 20px; line-height: 1.3; }
+  .career-list { align-items: stretch; gap: 14px; }
+  .career-item {
+    width: 100%;
+    padding: 16px;
+    font-size: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .career-role, .career-company, .career-dates { min-width: 0; margin: 0; padding: 0; text-align: left; }
+
+  /* -------- BRANDS -------- */
+  .brands-wrapper { max-width: 100%; }
+  .brands-row { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .brands-heading { font-size: 20px; line-height: 1.3; }
+  .ticker-wrapper { padding: 24px 0; }
+  .tickerlogo { width: 9rem; margin: 0 1rem; }
+
+  /* -------- TECH STACK -------- */
+  .tech-stack-wrapper { max-width: 100%; }
+  .tech-stack-row { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .tech-stack-heading { font-size: 20px; }
+  .tech-stack-icons {
+    width: 100%;
+    padding: 20px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.06);
+  }
+  .tech-icon { width: 4rem; height: 4rem; margin: 0 1rem; }
+
+  /* -------- FOOTER -------- */
+  #footer h2 { font-size: 20px; }
+
