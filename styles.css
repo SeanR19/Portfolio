@@ -822,7 +822,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 12px;
-    padding: 19px 60px;        /* make left/right symmetric */
+    padding: 19px 32px;        /* make left/right symmetric */
     border-radius: 18px;
   
   }
