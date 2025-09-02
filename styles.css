@@ -5,7 +5,14 @@ body {
     margin: 0;
     padding: 0;
   }
+  /* keep this so layout is smooth; opacity is set inline by JS now */
+  .projects-row > *,
+  .projects-grid .project-card { will-change: transform, opacity; }
   
+  
+  
+
+
   .section {
     padding: 40px 20px;
     text-align: center;
@@ -142,7 +149,7 @@ body {
       display: inline-flex;
       width: fit-content;
       max-width: 100%;
-      padding: 12px 30.5px;
+      padding: 9px 30.5px;
       font-size: 14px;
       font-weight: 500;
       border-radius: 60px;
@@ -175,10 +182,12 @@ body {
       background-size: 400% 400%;
       border: 1px solid transparent;
       animation: spectrum-shift 20s linear infinite;
+      
+      transition: background-position 1.2s ease, box-shadow 0.3s ease;
     }
   
     .work-button:hover {
-      border: 1px solid #fff;
+      
       box-shadow: 0px 13px 16px -4px rgba(138, 43, 226, 0.3);
     }
   
@@ -206,9 +215,11 @@ body {
         animation: none;
       }
       
-      .hero-button:hover .button-arrow {
-        animation: arrow-pop 0.6s ease;
-      }
+      .hero-button:hover .button-arrow,
+.work-button:hover .button-arrow {
+  animation: arrow-pop 0.6s ease;
+}
+
       
       
       @keyframes arrow-pop {
@@ -285,7 +296,7 @@ body {
     display: inline-flex;
     width: fit-content;
     max-width: 100%;
-    padding: 12px 30.5px;
+    padding: 9px 30.5px;
     font-size: 14px;
     font-weight: 500;
     border-radius: 60px;
@@ -400,12 +411,12 @@ body {
     justify-content: space-between;
     padding: 20px;
     gap: 20px;
+    cursor: pointer;
   }
   
   /* White media preview block */
   .project-preview {
     flex: 1;
-    background-color: white;
     border-radius: 12px;
     overflow: hidden;
     display: flex;
@@ -414,8 +425,8 @@ body {
   }
   
   .project-preview img {
-    max-width: 100.5%;
-    max-height: 120%;
+    max-width: 101%;
+    max-height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
     transition: filter 0.3s ease;
@@ -423,6 +434,9 @@ body {
   
   .project-preview img.hovered {
     filter: grayscale(0%);
+  }
+  .project-card:hover .project-arrow {
+    animation: arrow-pop 0.6s ease;
   }
   
   /* Footer of card */
