@@ -21,7 +21,8 @@ function revealProjectCards() {
     cards.forEach(el => { el.style.opacity = "1"; el.style.transform = "translateY(0)"; });
     return;
   }
-  animate(cards,
+  animate(
+    cards,
     { opacity: 1, transform: "translateY(0)" },
     { delay: stagger(0.1), duration: 0.6, easing: "cubic-bezier(.22,.61,.36,1)" }
   );
@@ -82,17 +83,23 @@ function revealProjectsRow() {
     parts.forEach(el => { el.style.opacity = "1"; el.style.transform = "translateY(0)"; });
     return;
   }
-  animate(parts,
+  animate(
+    parts,
     { opacity: 1, transform: "translateY(0)" },
     { delay: stagger(0.06), duration: 0.5, easing: "cubic-bezier(.22,.61,.36,1)" }
   );
 }
 
-// Reveal the row when the section content scrolls into view
-inView(".projects-section-content", ({ unobserve }) => {
-  revealProjectsRow();
-  unobserve(); // run once
-}, { amount: 0.2, margin: "0px 0px -10% 0px" });
+// Reveal the row when the section content scrolls into view (run once)
+const stopProjectsRow = inView(
+  ".projects-section-content",
+  () => {
+    revealProjectsRow();
+    // stop observing this selector after first trigger
+    stopProjectsRow && stopProjectsRow();
+  },
+  { amount: 0.2, margin: "0px 0px -10% 0px" }
+);
 
 // If already visible on very small screens, reveal immediately
 document.addEventListener("DOMContentLoaded", () => {
@@ -156,11 +163,16 @@ function setupSectionReveal(selector, dir = "up", opts = { amount: 0.2 }) {
     checkImmediate();
   }
 
-  // Observe
-  inView(selector, ({ unobserve }) => {
-    revealSection(el);
-    unobserve(); // run once
-  }, { amount: opts.amount ?? 0.2, margin: opts.margin ?? "0px 0px -10% 0px" });
+  // Observe (run once, then stop)
+  let stop;
+  stop = inView(
+    selector,
+    () => {
+      revealSection(el);
+      stop && stop();
+    },
+    { amount: opts.amount ?? 0.2, margin: opts.margin ?? "0px 0px -10% 0px" }
+  );
 }
 
 // Hook up remaining sections (directions per your earlier choice)
@@ -168,7 +180,6 @@ setupSectionReveal("#careers", "left");
 setupSectionReveal("#brands",  "right");
 setupSectionReveal("#tools",   "up");
 setupSectionReveal("#footer",  "up");
-
 
 
 
