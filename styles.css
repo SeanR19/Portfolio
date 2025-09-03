@@ -815,7 +815,7 @@ body {
 /* ============ MOBILE ONLY (phones) ============ */
 @media (max-width: 480px) {
   /* Global 13px gutters */
-  .section { padding: 28px 13px; }
+  .section { padding: 13px 13px; }
 
   /* Common inner wrappers use the same 13px gutters */
   .projects-section-content,
@@ -883,7 +883,7 @@ body {
   .projects-grid { gap: 16px; align-items: flex-start; }
   .project-card {
     width: 100%;
-    max-width: 312px; /* narrower card on mobile */
+    max-width: 340px; /* narrower card on mobile */
     height: auto;
     padding: 16px;
     gap: 12px;
@@ -913,7 +913,7 @@ body {
   .career-list { align-items: flex-start; gap: 14px; }
   .career-item {
     width: 100%;
-    max-width: 312px; /* match project card width */
+    max-width: 340px; /* match project card width */
     padding: 16px;
     font-size: 14px;
     display: flex;
