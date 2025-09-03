@@ -882,7 +882,7 @@ html, body {
   .projects-grid { gap: 16px; align-items: flex-start; }
   .project-card {
     width: 100%;
-    max-width: 310px; /* narrower card on mobile */
+    max-width: 315px; /* narrower card on mobile */
     height: auto;
     padding: 16px;
     gap: 12px;
@@ -912,7 +912,7 @@ html, body {
   .career-list { align-items: flex-start; gap: 14px; }
   .career-item {
     width: 100%;
-    max-width: 310px; /* match project card width */
+    max-width: 315px; /* match project card width */
     padding: 16px;
     font-size: 14px;
     display: flex;
