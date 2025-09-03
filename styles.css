@@ -850,7 +850,7 @@ html, body {
     gap: 12px;
     padding: 20px 20px;
     border-radius: 18px;
-    padding-bottom: max(20px, env(safe-area-inset-bottom)); /* avoid home-indicator overlap */
+    
   }
 
   .hero-button,
