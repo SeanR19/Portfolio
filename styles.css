@@ -1,17 +1,54 @@
-body {
+html, body {
     background-color: #212121;
     color: white;
     font-family: sans-serif;
     margin: 0;
     padding: 0;
+    width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; 
   }
   /* keep this so layout is smooth; opacity is set inline by JS now */
   .projects-row > *,
   .projects-grid .project-card { will-change: transform, opacity; }
+  img, svg, video {
+    max-width: 100%;
+    height: auto;
+    display: block;         /* avoids baseline bumps */
+  }
   
   
-  
+/* Shared fixes (mobile; you can use globally too) */
+.ticker-wrapper { overflow: hidden; }
 
+.img-ticker {
+  display: flex;
+  width: max-content;         /* track = natural width of its children */
+  will-change: transform;
+  margin-left: 0;             /* kill any negative margins */
+  margin-right: 0;
+  animation: ticker-loop 20s linear infinite;
+}
+
+
+@keyframes ticker-loop {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); } /* move by one copy’s width */
+}
+.tech-ticker {
+  display: flex;
+  width: max-content;         /* track = natural width of its children */
+  will-change: transform;
+  margin-left: 0;             /* kill any negative margins */
+  margin-right: 0;
+  animation: ticker-loop 20s linear infinite;
+}
+
+@keyframes ticker-loop {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); } /* move by one copy’s width */
+}
+.tickerlogo { flex: none; display: block; }    /* no flex-shrink; no baseline gaps */
 
   .section {
     padding: 40px 20px;
@@ -705,15 +742,7 @@ body {
   
   
   /* The actual scrolling ticker row */
-  .tech-ticker {
-    display: flex;
-    animation: tech-scroll 18s linear infinite reverse;
-  }
   
- @keyframes tech-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100rem); }
-  }
   
   .tech-icon {
   width: 6rem;
@@ -783,7 +812,7 @@ body {
 
   /* mobile */
 
-  /* ============ MOBILE ONLY (phones) ============ */
+/* ============ MOBILE ONLY (phones) ============ */
 @media (max-width: 480px) {
   /* Global 13px gutters */
   .section { padding: 28px 13px; }
@@ -806,36 +835,31 @@ body {
 
   /* Pin navbar to 13px gutters and remove center transform */
   .navbar-wrapper {
-    bottom: 40px;
+    bottom: 20px;
     left: 13px;
     right: 13px;
     transform: none;
-    display: flex;
-    justify-content: center;   /* <-- center the .navbar child */
     gap: 0;
   }
 
-  /* Let the pill size to its contents and center it */
   .navbar {
-    width: auto;               /* <-- not 100% */
-    max-width: 100%;
-    display: flex;
+    width: 90%;
     justify-content: center;
+    align-content: center;
     gap: 12px;
-    padding: 19px 32px;        /* make left/right symmetric */
+    padding: 20px 20px;
     border-radius: 18px;
-  
+    padding-bottom: max(20px, env(safe-area-inset-bottom)); /* avoid home-indicator overlap */
   }
 
-  /* Clean margins so they don't push the group off-center */
   .hero-button,
   .work-button {
-    margin: 0;
-    padding: 8px 30.5px;
+    padding: 10px 30.5px;
     font-size: 14px;
     white-space: nowrap;
   }
-}
+
+  .button-arrow { width: 10px; height: 10px; margin-left: 6px; }
 
   /* -------- HERO -------- */
   .hero { padding-top: 120px; text-align: left; }
@@ -851,9 +875,10 @@ body {
   .projects-label { font-size: 14px; }
   .projects-heading { font-size: 20px; line-height: 1.3; }
 
-  .projects-grid { gap: 16px; }
+  .projects-grid { gap: 16px; align-items: flex-start; }
   .project-card {
     width: 100%;
+    max-width: 328px; /* narrower card on mobile */
     height: auto;
     padding: 16px;
     gap: 12px;
@@ -867,18 +892,26 @@ body {
   .project-footer { padding: 0; }
   .project-title { font-size: 16px; }
   .project-arrow { width: 14px; height: 14px; }
-  .see-all-button { width: 100%; justify-content: center; }
+  .see-all-button {
+  width: auto;
+  justify-content: center;
+  align-self: center;          /* center on mobile */
+  margin-left: auto;
+  margin-right: auto;
+}
 
   /* -------- CAREERS -------- */
   .careers-section-content { padding: 0 13px; }
   .careers-row { flex-direction: column; gap: 8px; align-items: flex-start; margin-bottom: 20px; }
   .careers-label { font-size: 14px; }
   .careers-heading { font-size: 20px; line-height: 1.3; }
-  .career-list { align-items: stretch; gap: 14px; }
+  .career-list { align-items: flex-start; gap: 14px; }
   .career-item {
     width: 100%;
+    max-width: 328px; /* match project card width */
     padding: 16px;
     font-size: 14px;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
@@ -891,6 +924,26 @@ body {
   .brands-heading { font-size: 20px; line-height: 1.3; }
   .ticker-wrapper { padding: 24px 0; }
   .tickerlogo { width: 9rem; margin: 0 1rem; }
+  /* --- Seamless brand ticker on mobile --- */
+.ticker-wrapper { overflow: hidden; }
+
+.img-ticker {
+  /* Make the track auto-size to its content and slide smoothly */
+  width: max-content;
+  will-change: transform;
+  animation: ticker-mobile 20s linear infinite;
+  margin-left: 0;  /* avoid extra width that can cause wiggle */
+  margin-right: 0;
+}
+
+@keyframes ticker-mobile {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); } /* move by one copy’s width */
+}
+
+/* keep logos fixed-size on mobile if you like */
+.tickerlogo { flex: none; display: block; }
+
 
   /* -------- TECH STACK -------- */
   .tech-stack-wrapper { max-width: 100%; }
@@ -907,4 +960,31 @@ body {
 
   /* -------- FOOTER -------- */
   #footer h2 { font-size: 20px; }
+
+  /* --- Left-align Projects section (label + heading) on mobile --- */
+  .projects-section-content { align-items: flex-start; }
+  .projects-row { align-items: flex-start; }
+  .projects-label, .projects-heading { text-align: left; }
+
+  /* Non-navbar buttons shrink to content */
+  .section .hero-button,
+  .section .work-button,
+  .section button,
+  .section a.hero-button,
+  .section a.work-button {
+    display: inline-flex;
+    width: auto;
+    align-self: center;         /* center by default */
+    margin-left: auto;          /* center in flex column */
+    margin-right: auto;
+  }
+
+  /* Keep ONLY the hero's primary CTA left-aligned */
+  .hero .hero-button {
+    align-self: flex-start;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 
