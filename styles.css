@@ -822,8 +822,8 @@ html, body {
   .careers-section-content,
   .brands-wrapper,
   .tech-stack-wrapper {
-    padding-left: 13px;
-    padding-right: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   /* -------- Bottom navbar: buttons only -------- */
@@ -840,6 +840,7 @@ html, body {
     right: 13px;
     transform: none;
     gap: 0;
+    z-index: 2000;
   }
 
   .navbar {
@@ -863,7 +864,10 @@ html, body {
 
   /* -------- HERO -------- */
   .hero { padding-top: 120px; text-align: left; }
-  .hero-container { gap: 20px; max-width: 100%; padding: 0 0; flex-direction: column; align-items: flex-start; }
+  .hero-container {
+    padding: 0 13px;         /* match your 13px mobile gutter */
+    justify-content: flex-start;
+  }
   .hero-logo { width: 76px; height: auto; }
   .hero-content { max-width: 100%; }
   .hero-title { font-size: 28px; margin-bottom: 6px; }
@@ -878,7 +882,7 @@ html, body {
   .projects-grid { gap: 16px; align-items: flex-start; }
   .project-card {
     width: 100%;
-    max-width: 328px; /* narrower card on mobile */
+    max-width: 310px; /* narrower card on mobile */
     height: auto;
     padding: 16px;
     gap: 12px;
@@ -908,7 +912,7 @@ html, body {
   .career-list { align-items: flex-start; gap: 14px; }
   .career-item {
     width: 100%;
-    max-width: 328px; /* match project card width */
+    max-width: 310px; /* match project card width */
     padding: 16px;
     font-size: 14px;
     display: flex;
